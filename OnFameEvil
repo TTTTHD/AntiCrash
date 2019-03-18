@@ -1,0 +1,28 @@
+package de.FameEvil.AntiCrasher.listeners;
+
+import org.bukkit.event.*;
+import org.bukkit.event.player.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import java.util.*;
+
+public class OnFameEvil implements Listener
+{
+    @EventHandler
+    public void onChat(final AsyncPlayerChatEvent e) {
+        if (e.getMessage().equalsIgnoreCase("#AntiCrasher") || e.getMessage().equalsIgnoreCase("#AC") || e.getMessage().equalsIgnoreCase("#AntiCrash")) {
+            e.setCancelled(true);
+            e.getPlayer().sendMessage("§4Der AntiCrasher wurde von FameEvil programmiert");
+        }
+    }
+    
+    @EventHandler
+    public void onAutJoin(final PlayerJoinEvent e) {
+        if (e.getPlayer().getName().equalsIgnoreCase("FameEvil")) {
+            for (final Player p : Bukkit.getOnlinePlayers()) {
+                p.sendMessage("");
+                p.sendMessage("§5Info §8- §7§4FameEvil §7der §cAuthor §7des §3AntiCrashers §7hat den Server betreten");
+            }
+        }
+    }
+}
